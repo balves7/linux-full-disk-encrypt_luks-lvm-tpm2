@@ -24,11 +24,9 @@ Creating the partitions, for this example we will use a nvme0n1 SSD but you can 
 fdisk /dev/nvme0n1
 ```
 Create the partitions as the picture bellow
- [ here will be a picture ] 
+![alt text](https://github.com/balves7/linux-full-disk-encrypt_luks-lvm-tpm2/blob/main/images/fdisk_example.jpg) 
 
-Change the type of the first partition to type:ef
-[ here will be a picture ] 
-
+Change the type of the first partition to type:ef (The options will be t, 1, ef) 
 Now we are able to create the LUKS partition.
 
 ```bash
@@ -61,14 +59,15 @@ lvs
  
 ```
 
-Now we can proceed with the installation process, clicking on Install Ubuntu [ here will be a picture ] 
+Now we can proceed with the installation process, clicking on Install Ubuntu 
+![alt text](https://github.com/balves7/linux-full-disk-encrypt_luks-lvm-tpm2/blob/main/images/icon_install.png) 
 
 Click on Something else when you asked about partitions and select the lv0-swap for swap partition and lv1-root for / partition
 
 Select the efi partition and configure it type
 Select the device for boot partition and configure it as a boot partition. 
 
-[here will be a image ]
+![alt text](https://github.com/balves7/linux-full-disk-encrypt_luks-lvm-tpm2/blob/main/images/partition_schema.jpg)
 
 Proceed with the installation process and when you prompted about the process has been finished, you will click on "Continue Testing" to proceed with the some necessary configurations...
 
@@ -183,6 +182,9 @@ Review information about the crypto setup again, check if the new key has been a
 ```bash
 cryptsetup luksDump /dev/nvme0n1p3
 ```
+
+Token clevis inserted as the picture bellow
+![alt text](https://github.com/balves7/linux-full-disk-encrypt_luks-lvm-tpm2/blob/main/images/clevis_luksDump_example.jpg)
 
 Now we can reboot the machine and test if the disk will be decrypted by TPM. (You will see a screen asking for the passphrase but after about 5 seconds the TPM will automatically decrypt. 
 
